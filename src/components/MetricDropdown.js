@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -16,25 +16,27 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const onChange = () => {
-  console.log('Dropdown selection');
-};
-
-const Dropdown = () => {
+const Dropdown = ({ onChange }) => {
   const classes = useStyles();
+
+  const [metric, setActiveMetric] = React.useState('');
+
+  const dropDownChange = e => {
+    let selection = e.target.value;
+    onChange(selection);
+    setActiveMetric(selection);
+  };
 
   return (
     <div>
       <FormControl className={classes.formControl}>
         <InputLabel id="metric-input-label">Select...</InputLabel>
-        <Select labelId="metric-select-label" id="metric-select" value={''} onChange={onChange}>
-          <MenuItem value="" disabled>
-            None
-          </MenuItem>
-          <MenuItem value={''}>Metric</MenuItem>
-          <MenuItem value={''}>Metric</MenuItem>
-          <MenuItem value={''}>Metric</MenuItem>
-          <MenuItem value={''}>Metric</MenuItem>
+        <Select labelId="metric-select-label" id="metric-select" value={metric} onChange={dropDownChange}>
+          <MenuItem value={'flareTemp'}>flareTemp</MenuItem>
+          <MenuItem value={'waterTemp'}>waterTemp</MenuItem>
+          <MenuItem value={'oilTemp'}>oilTemp</MenuItem>
+          <MenuItem value={'tubingPressure'}>tubingPressure</MenuItem>
+          <MenuItem value={'injValveOpen'}>injValveOpen</MenuItem>
         </Select>
         <FormHelperText>Select a metric above to populate the chart.</FormHelperText>
       </FormControl>
