@@ -9,7 +9,7 @@ const useStyles = makeStyles({
   paper: {},
 });
 
-// Sample data from documentation api
+// Sample data
 // const data = [
 //   {
 //     metric: 'flareTemp',
@@ -17,78 +17,23 @@ const useStyles = makeStyles({
 //     value: 719.9,
 //     unit: 'F',
 //   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923842368,
-//     value: 692.04,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923843669,
-//     value: 681.61,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923844970,
-//     value: 724.98,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923846271,
-//     value: 718.48,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923847573,
-//     value: 736.38,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923848874,
-//     value: 696.66,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923850175,
-//     value: 654.95,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923851477,
-//     value: 644.83,
-//     unit: 'F',
-//   },
-//   {
-//     metric: 'flareTemp',
-//     at: 1598923852777,
-//     value: 623.93,
-//     unit: 'F',
-//   },
-// ];
+// ]
 
 const MetricChart = ({ data }) => {
   const classes = useStyles();
 
-  console.log(data);
   return (
     <div>
       <Paper variant="outlined">
         <LineChart width={1200} height={800} data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="at">
+          <XAxis dataKey="at" domain={['dataMin', 'dataMax']}>
             <Label value="Times" offset={0} position="insideBottom" />
           </XAxis>
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="at" stroke="#8884d8" name={'test'} />
+          <Line type="monotone" dataKey="" stroke="#8884d8" name={'metric'} />
         </LineChart>
       </Paper>
     </div>
